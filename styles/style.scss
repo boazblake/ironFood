@@ -144,11 +144,44 @@ body {
         .searchResultsWrapper {
 
             .cardWrapper{
+                position: relative;
+                height: 250px;
+                width:250px;
+                perspective:1000px;
 
                 .brandDeets {
                     margin:2%;
                     padding:2%;
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    background-color: red;
+                    backface-visibilty:hidden;
+                    transition: .7s all;
+                    transform-style: preserve-3d;
+                    
+                    &.frontOfCard {
+                        transform: rotateY(0deg);
+                        background:#e74c3c;
+                        z-index:1;
+                    }
+
+                    &.backOfCard {
+                        transform: rotateY(180deg);
+                        background:#3498db;;
+                        z-index: 2;
+                    }
                 }
+
+                &:hover {
+                    .frontOfCard{
+                        transform: rotateY(-180deg)
+                    }
+                    .backOfCard{
+                        transform: rotateY(0deg)
+                    }
+                }
+
             }
         }
     }

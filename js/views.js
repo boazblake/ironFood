@@ -104,6 +104,7 @@ var SearchResultsItems =  React.createClass({
 					<p >ingredient statement: {item.get('fields').nf_ingredient_statement}</p>
 				</div>
 				<div className='brandDeets backOfCard'>
+			
 				</div>
 			</div>
 		)
