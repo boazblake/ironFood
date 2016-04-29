@@ -51,28 +51,15 @@ import Backbone from 'backbone'
 // ///////////////////////////////////////////////////////////
 // ///////////////////////////////////////////////////////////
 
-// example URL for nutritionix
-// "https://api.nutritionix.com/v1_1/search/taco?results=0%3A20&cal_min=0&cal_max=3&fields=item_name%2Cbrand_name%2Citem_id%2Cbrand_id&appId=98cd0ce4&appKey=30068e1d9c1d32ebf4ab17a523899cf2"
-
-
-
-
-
-// 
-// https://api.nutritionix.com/v1_1/search/cheddar%20cheese?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat&appId=[YOURID]&appKey=[YOURKEY]
-// https://api.nutritionix.com/v1_1/search/cheddar%20cheese?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat&appId=98cd0ce4&appKey=30068e1d9c1d32ebf4ab17a523899cf2
-
 // API URL
 
-var NutrientModel = Backbone.Model.extend({})
-
 var NutrientColl = Backbone.Collection.extend({
-	url:'http://api.nal.usda.gov/ndb/search/?format=json&q=oranges',
-	// results=0%3A20&cal_min=0&cal_max=30000&fields=item_name%2Cbrand_name%2Citem_id%2Cbrand_id&`,
+	url:'http://api.nal.usda.gov/ndb/list?&format=json&lt=f',
+	// url:'http://api.nal.usda.gov/ndb/search?type=f&format=json',
+
 	appKey:'CsuJbUiqOm63UDC7TTYssYjGz2IgKhCxTYKWMO6r',
 	appId:'98cd0ce4',
 
-	// model:NutrientModel,
 
 	parse:function(rawData){
 		console.log('rawData: >>>>>>', rawData)
@@ -92,9 +79,9 @@ var IronEventsRouter = Backbone.Router.extend({
 		console.log('component.nc', component.nc)
 		component.nc.fetch({
 			data:{
-				'appId':component.nc.appId,
-				'api_key':component.nc.appKey,
-				'query':'tomato'
+				'appId'		:component.nc.appId,
+				'api_key'	:component.nc.appKey,
+				'q'			:'candy'
 			}
 		}).then( function(){
 			DOM.render(<ExampleView example={component.nc}/>, document.querySelector('.container'))
