@@ -135,10 +135,21 @@ body {
     flex-flow:space-around;
     align-items:baseline;
     align-content:space-around;
+    justify-content:space-around;
 
     .item{
-        display: inline-block;
+        display: flex;
         border: 1px solid grey;
         font-size: 12px;
+        .searchResultsWrapper {
+
+            .cardWrapper{
+
+                .brandDeets {
+                    margin:2%;
+                    padding:2%;
+                }
+            }
+        }
     }
 }
