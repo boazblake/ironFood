@@ -18,8 +18,8 @@ var Footer = React.createClass({
 	render:function(){
 		return(
 			<div className='logo'>
-				<a href='http://www.nutritionix.com/api'>
-					<img src='https://d3jpl91pxevbkh.cloudfront.net/nutritionix/image/upload/v1363458498/attribution_jqfdgy.png'/>
+				<a href=''>
+					<img src=''/>
 				</a>
 			</div>
 			)

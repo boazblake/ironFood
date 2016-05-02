@@ -60,12 +60,12 @@ import {SplashView, SearchView} from './views'
 var NutrientModel = Backbone.Model.extend({})
 
 var NutrientColl = Backbone.Collection.extend({
-	_setURL: function(qry){
-		this.url = `https://api.nutritionix.com/v1_1/search/${qry}?fields=item_name%2Cbrand_name%2Cnf_calories%2Cnf_total_carbohydrate%2Cnf_sugars%2Cnf_total_fat%2Cnf_calories_from_fat%2Cnf_water_grams%2citem_description%2Cnf_ingredient_statement%2Citem_id%2Cusda_fields`
+	_setURL: function(){
+		this.url = `https://api.edamam.com/api/nutrition-data?`
 	},
 
-	appKey:'c530fdb9500741614cb04ec9dc9883d6',
-	appId:'98cd0ce4',
+	app_key:'a6b9a5263508160cfed5871c51e9b76c',
+	app_id:'80058571',
 
 	model:NutrientModel,
 	
@@ -86,16 +86,16 @@ var IronEventsRouter = Backbone.Router.extend({
 		var component = this
 		var hashRoute = location.hash
 		console.log('hashRoute', hashRoute)
-		var qry = hashRoute.substring(8)
+		var qry = hashRoute.substring(8).split('%20').join('/')
 		console.log('qry', qry)
 		component.nc = new NutrientColl()
 		component.nc._setURL(qry)
 		console.log('component.nc', component.nc)
 		component.nc.fetch({
 			data:{
-				'appId':component.nc.appId,
-				'appKey':component.nc.appKey,
-				// 'query':'tomato'
+				'app_id':component.nc.app_id,
+				'app_key':component.nc.app_key,
+				'ingr':qry
 			}
 		}).then( function(){
 			DOM.render(<SearchView qryColl={component.nc}/>, document.querySelector('.container'))
